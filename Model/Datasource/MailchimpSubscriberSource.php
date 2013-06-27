@@ -62,7 +62,7 @@ class MailchimpSubscriberSource extends DataSource {
 	public function read(Model $model, $queryData = array()) {
 		//$url = $this->buildUrl('listMemberInfo', $queryData['conditions']['email']);
 		//$response = json_decode($this->connection->get($url), true);
-		$response = $this->Mailchimp->listMemberInfo($this->settings['defaultListId'], $queryData['conditions']['email']);
+		$response = $this->Mailchimp->listMemberInfo($this->settings['listId'], $queryData['conditions']['emailaddress']);
 
 		return $response;
 	}
@@ -81,7 +81,7 @@ class MailchimpSubscriberSource extends DataSource {
 		$email = $data['email'];
 		unset($data['email']);
 
-		$response = $this->Mailchimp->listSubscribe($this->settings['defaultListId'], $email);
+		$response = $this->Mailchimp->listSubscribe($this->settings['listId'], $email);
 		return $response;
 	}
 
